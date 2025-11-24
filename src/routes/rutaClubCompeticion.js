@@ -14,52 +14,41 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/:id', async (req, res) => {
-  try {
-    const insc = await ClubCompeticion
-      .findById(req.params.id)
-      .populate('club', 'nombre pais')
-      .populate('competicion', 'nombre temporada pais');
-    if (!insc) return res.status(404).json({ error: 'Inscripción no encontrada' });
-    return res.status(200).json(insc);
-  } catch (error) {
-    return res.status(500).json({ error: 'Error al obtener la inscripción' });
-  }
-});
 
 router.get('/competicion/:idCompeticion', async (req, res) => {
   try {
-    const lista = await ClubCompeticion
+    const inscripciones = await ClubCompeticion
       .find({ competicion: req.params.idCompeticion })
       .populate('club', 'nombre pais')
       .populate('competicion', 'nombre temporada pais');
-    return res.status(200).json(lista);
+    return res.status(200).json(inscripciones);
   } catch (error) {
-    return res.status(500).json({ error: 'Error al filtrar por competición' });
+    return res.status(500).json({ error: 'Error al obtener inscripciones por competición' });
   }
 });
 
 router.get('/club/:idClub', async (req, res) => {
   try {
-    const lista = await ClubCompeticion
+    const inscripciones = await ClubCompeticion
       .find({ club: req.params.idClub })
       .populate('club', 'nombre pais')
       .populate('competicion', 'nombre temporada pais');
-    return res.status(200).json(lista);
+    return res.status(200).json(inscripciones);
   } catch (error) {
-    return res.status(500).json({ error: 'Error al filtrar por club' });
+    return res.status(500).json({ error: 'Error al obtener inscripciones por club' });
   }
 });
 
 router.get('/clasificacion/:idCompeticion', async (req, res) => {
   try {
-    const tabla = await ClubCompeticion
+    const clasificacion = await ClubCompeticion
       .find({ competicion: req.params.idCompeticion })
-      .sort({ puntos: -1, goles_favor: -1 })
-      .populate('club', 'nombre pais');
-    return res.status(200).json(tabla);
+      .populate('club', 'nombre pais')
+      .populate('competicion', 'nombre temporada pais')
+      .sort({ puntos: -1, goles_favor: -1 });
+    return res.status(200).json(clasificacion);
   } catch (error) {
-    return res.status(500).json({ error: 'Error al obtener la clasificación' });
+    return res.status(500).json({ error: 'Error al obtener clasificación' });
   }
 });
 
@@ -67,30 +56,43 @@ router.get('/puntos/:min/:max', async (req, res) => {
   try {
     const min = Number(req.params.min);
     const max = Number(req.params.max);
-    const lista = await ClubCompeticion
+
+    const inscripciones = await ClubCompeticion
       .find({ puntos: { $gte: min, $lte: max } })
       .populate('club', 'nombre pais')
       .populate('competicion', 'nombre temporada pais');
-    return res.status(200).json(lista);
+
+    return res.status(200).json(inscripciones);
   } catch (error) {
     return res.status(500).json({ error: 'Error al filtrar por puntos' });
   }
 });
 
-router.post('/', async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
-    const nueva = new ClubCompeticion(req.body);
-    await nueva.save();
-
-    const creada = await ClubCompeticion.findById(nueva._id)
+    const inscripcion = await ClubCompeticion
+      .findById(req.params.id)
       .populate('club', 'nombre pais')
       .populate('competicion', 'nombre temporada pais');
-
-    return res.status(201).json(creada);
+    if (!inscripcion) return res.status(404).json({ error: 'Inscripción no encontrada' });
+    return res.status(200).json(inscripcion);
   } catch (error) {
-    console.error(error);
+    return res.status(500).json({ error: 'Error al obtener inscripción' });
+  }
+});
+
+router.post('/', async (req, res) => {
+  try {
+    const inscripcion = new ClubCompeticion(req.body);
+    const guardada = await inscripcion.save();
+    const completa = await ClubCompeticion
+      .findById(guardada._id)
+      .populate('club', 'nombre pais')
+      .populate('competicion', 'nombre temporada pais');
+    return res.status(201).json(completa);
+  } catch (error) {
     return res.status(400).json({
-      error: 'Error al crear la inscripción',
+      error: 'Error al crear inscripción',
       detalles: error.message,
       code: error.code,
       fields: error.errors
@@ -100,7 +102,7 @@ router.post('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   try {
-    const actualizado = await ClubCompeticion.findByIdAndUpdate(
+    const actualizada = await ClubCompeticion.findByIdAndUpdate(
       req.params.id,
       { $set: req.body },
       { new: true, runValidators: true }
@@ -108,15 +110,13 @@ router.put('/:id', async (req, res) => {
       .populate('club', 'nombre pais')
       .populate('competicion', 'nombre temporada pais');
 
-    if (!actualizado) return res.status(404).json({ error: 'Inscripción no encontrada' });
-
-    return res.status(200).json({
-      mensaje: 'Inscripción actualizada correctamente',
-      inscripcionActualizada: actualizado,
-      timestamp: new Date()
-    });
+    if (!actualizada) return res.status(404).json({ error: 'Inscripción no encontrada' });
+    return res.status(200).json(actualizada);
   } catch (error) {
-    return res.status(400).json({ error: 'Error al actualizar la inscripción', detalles: error.message });
+    return res.status(400).json({
+      error: 'Error al actualizar inscripción',
+      detalles: error.message
+    });
   }
 });
 

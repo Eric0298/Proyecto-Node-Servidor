@@ -1,0 +1,78 @@
+{% extends "base.njk" %}
+
+{% block titulo %}Nuevo jugador{% endblock %}
+
+{% block contenido %}
+  <h1 class="mb-3">Nuevo jugador</h1>
+
+  <form action="/jugadores" method="post">
+    <div class="mb-3">
+      <label class="form-label">Nombre</label>
+      <input type="text" name="nombre" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Apellido</label>
+      <input type="text" name="apellido" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Fecha de nacimiento</label>
+      <input type="date" name="fecha_nacimiento" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Nacionalidad</label>
+      <input type="text" name="nacionalidad" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Posicion</label>
+      <select name="posicion" class="form-select" required>
+        <option value="">-- Selecciona --</option>
+        <option value="POR">Portero</option>
+        <option value="DEF">Defensa</option>
+        <option value="LATERAL">Lateral</option>
+        <option value="CENTRAL">Central</option>
+        <option value="MED">Mediocampista</option>
+        <option value="MCO">MCO</option>
+        <option value="MCD">MCD</option>
+        <option value="EXT">Extremo</option>
+        <option value="DEL">Delantero</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Dorsal</label>
+      <input type="number" name="dorsal" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Club</label>
+      <select name="club" class="form-select" required>
+        <option value="">-- Selecciona un club --</option>
+        {% for club in clubs %}
+          <option value="{{ club._id }}">{{ club.nombre }} ({{ club.pais }})</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Goles</label>
+      <input type="number" name="goles" class="form-control" value="0">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Asistencias</label>
+      <input type="number" name="asistencias" class="form-control" value="0">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Partidos jugados</label>
+      <input type="number" name="partidos_jugados" class="form-control" value="0">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a href="/jugadores" class="btn btn-secondary">Cancelar</a>
+  </form>
+{% endblock %}

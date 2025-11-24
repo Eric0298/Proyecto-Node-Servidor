@@ -1,0 +1,90 @@
+{% extends "base.njk" %}
+
+{% block titulo %}Editar jugador{% endblock %}
+
+{% block contenido %}
+  <h1 class="mb-3">Editar jugador</h1>
+
+  <form action="/jugadores/{{ jugador._id }}?_method=put" method="post">
+    <div class="mb-3">
+      <label class="form-label">Nombre</label>
+      <input type="text" name="nombre" class="form-control"
+             value="{{ jugador.nombre }}" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Apellidos</label>
+      <input type="text" name="apellido" class="form-control"
+             value="{{ jugador.apellido }}" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Fecha nacimiento</label>
+      <input type="date" name="fecha_nacimiento" class="form-control"
+             value="{{ jugador.fecha_nacimiento | date('YYYY-MM-DD') if jugador.fecha_nacimiento }}">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Nacionalitat</label>
+      <input type="text" name="nacionalidad" class="form-control"
+             value="{{ jugador.nacionalidad }}">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Posició</label>
+      <select name="posicion" class="form-select" required>
+        {% set pos = jugador.posicion %}
+        <option value="">-- Selecciona --</option>
+        <option value="POR" {{ 'selected' if pos == 'POR' }}>Portero</option>
+        <option value="DEF" {{ 'selected' if pos == 'DEF' }}>Defensa</option>
+        <option value="LATERAL" {{ 'selected' if pos == 'LATERAL' }}>Lateral</option>
+        <option value="CENTRAL" {{ 'selected' if pos == 'CENTRAL' }}>Central</option>
+        <option value="MED" {{ 'selected' if pos == 'MED' }}>Mediocampista</option>
+        <option value="MCO" {{ 'selected' if pos == 'MCO' }}>MCO</option>
+        <option value="MCD" {{ 'selected' if pos == 'MCD' }}>MCD</option>
+        <option value="EXT" {{ 'selected' if pos == 'EXT' }}>Extremo</option>
+        <option value="DEL" {{ 'selected' if pos == 'DEL' }}>Delantero</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Dorsal</label>
+      <input type="number" name="dorsal" class="form-control"
+             value="{{ jugador.dorsal }}">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Club</label>
+      <select name="club" class="form-select" required>
+        <option value="">-- Selecciona un club --</option>
+        {% for club in clubs %}
+          <option value="{{ club._id }}"
+                  {{ 'selected' if jugador.club and jugador.club._id == club._id }}>
+            {{ club.nombre }} ({{ club.pais }})
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Goles</label>
+      <input type="number" name="goles" class="form-control"
+             value="{{ jugador.estadisticas.goles }}">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Asistencias</label>
+      <input type="number" name="asistencias" class="form-control"
+             value="{{ jugador.estadisticas.asistencias }}">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Partidos jugados</label>
+      <input type="number" name="partidos_jugados" class="form-control"
+             value="{{ jugador.estadisticas.partidos_jugados }}">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+    <a href="/jugadores" class="btn btn-secondary">Cancelar</a>
+  </form>
+{% endblock %}

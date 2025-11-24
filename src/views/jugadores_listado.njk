@@ -1,0 +1,59 @@
+{% extends "base.njk" %}
+
+{% block titulo %}Listado de jugaodres{% endblock %}
+
+{% block contenido %}
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="mb-0">Listado de jugadores</h1>
+    <a href="/jugadores/nuevo" class="btn btn-primary">Nuevo jugador</a>
+  </div>
+
+  {% if jugadores and jugadores.length %}
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellidos</th>
+          <th>Club</th>
+          <th>Posicion</th>
+          <th>Goles</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for jugador in jugadores %}
+          <tr>
+            <td>{{ jugador.nombre }}</td>
+            <td>{{ jugador.apellido }}</td>
+            <td>
+              {% if jugador.club %}
+                {{ jugador.club.nombre }} ({{ jugador.club.pais }})
+              {% else %}
+                —
+              {% endif %}
+            </td>
+            <td>{{ jugador.posicion }}</td>
+            <td>{{ jugador.estadisticas.goles }}</td>
+            <td class="d-flex gap-1">
+              <a href="/jugadores/{{ jugador._id }}" class="btn btn-sm btn-info">Ver</a>
+              <a href="/jugadores/editar/{{ jugador._id }}" class="btn btn-sm btn-warning">Editar</a>
+              <form action="/jugadores/{{ jugador._id }}?_method=delete" method="post" class="d-inline">
+  <button
+    type="submit"
+    class="btn btn-sm btn-danger"
+    onclick="return confirm('Seguro que quieres borrar este jugador?');">
+    Borrar
+  </button>
+</form>
+
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <div class="alert alert-info">
+      No hay jugadores en la base de datos.
+    </div>
+  {% endif %}
+{% endblock %}

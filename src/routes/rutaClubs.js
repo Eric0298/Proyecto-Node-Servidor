@@ -11,6 +11,51 @@ router.get('/', async (req, res) => {
   }
 });
 
+
+router.get('/pais/:pais', async (req, res) => {
+  try {
+    const clubs = await Club.find({ pais: req.params.pais });
+    return res.status(200).json(clubs);
+  } catch (error) {
+    return res.status(500).json({ error: 'Error al obtener clubes por país' });
+  }
+});
+
+router.get('/ciudad/:ciudad', async (req, res) => {
+  try {
+    const clubs = await Club.find({ ciudad: req.params.ciudad });
+    return res.status(200).json(clubs);
+  } catch (error) {
+    return res.status(500).json({ error: 'Error al obtener clubes por ciudad' });
+  }
+});
+
+router.get('/buscar-nombre/:texto', async (req, res) => {
+  try {
+    const regex = new RegExp(req.params.texto, 'i'); 
+    const clubs = await Club.find({ nombre: regex });
+    return res.status(200).json(clubs);
+  } catch (error) {
+    return res.status(500).json({ error: 'Error al buscar clubes por nombre' });
+  }
+});
+
+router.get('/fundacion/:min/:max', async (req, res) => {
+  try {
+    const min = Number(req.params.min);
+    const max = Number(req.params.max);
+
+    const clubs = await Club.find({
+      fundacion: { $gte: min, $lte: max }
+    });
+
+    return res.status(200).json(clubs);
+  } catch (error) {
+    return res.status(500).json({ error: 'Error al obtener clubes por rango de fundación' });
+  }
+});
+
+
 router.get('/:id', async (req, res) => {
   try {
     const club = await Club.findById(req.params.id);
@@ -21,52 +66,12 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.get('/pais/:pais', async (req, res) => {
-  try {
-    const clubs = await Club.find({ pais: req.params.pais });
-    return res.status(200).json(clubs);
-  } catch (error) {
-    return res.status(500).json({ error: 'Error al filtrar por país' });
-  }
-});
-
-router.get('/ciudad/:ciudad', async (req, res) => {
-  try {
-    const clubs = await Club.find({ ciudad: req.params.ciudad });
-    return res.status(200).json(clubs);
-  } catch (error) {
-    return res.status(500).json({ error: 'Error al filtrar por ciudad' });
-  }
-});
-
-router.get('/buscar-nombre/:texto', async (req, res) => {
-  try {
-    const texto = req.params.texto;
-    const clubs = await Club.find({ nombre: { $regex: texto, $options: 'i' } });
-    return res.status(200).json(clubs);
-  } catch (error) {
-    return res.status(500).json({ error: 'Error en búsqueda por nombre' });
-  }
-});
-
-router.get('/fundacion/:min/:max', async (req, res) => {
-  try {
-    const min = new Date(req.params.min);
-    const max = new Date(req.params.max);
-    const clubs = await Club.find({ fundacion: { $gte: min, $lte: max } });
-    return res.status(200).json(clubs);
-  } catch (error) {
-    return res.status(500).json({ error: 'Error al filtrar por fundación' });
-  }
-});
-
 router.post('/', async (req, res) => {
   try {
-    const nuevoClub = new Club(req.body);
-    await nuevoClub.save();
-    return res.status(201).json(nuevoClub);
+    const club = new Club(req.body);
+    const guardado = await club.save();
+    return res.status(201).json(guardado);
   } catch (error) {
-    console.error(error);
     return res.status(400).json({
       error: 'Error al crear club',
       detalles: error.message,
@@ -84,13 +89,12 @@ router.put('/:id', async (req, res) => {
       { new: true, runValidators: true }
     );
     if (!actualizado) return res.status(404).json({ error: 'Club no encontrado' });
-    return res.status(200).json({
-      mensaje: 'Club actualizado correctamente',
-      clubActualizado: actualizado,
-      timestamp: new Date()
-    });
+    return res.status(200).json(actualizado);
   } catch (error) {
-    return res.status(400).json({ error: 'Error al actualizar club', detalles: error.message });
+    return res.status(400).json({
+      error: 'Error al actualizar club',
+      detalles: error.message
+    });
   }
 });
 

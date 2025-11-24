@@ -1,0 +1,37 @@
+{% extends "base.njk" %}
+
+{% block titulo %}Detalle jugador{% endblock %}
+
+{% block contenido %}
+  <h1 class="mb-3">Detalle del jugador</h1>
+
+  <div class="card mb-3">
+    <div class="card-body">
+      <p><strong>Nombre:</strong> {{ jugador.nombre }}</p>
+      <p><strong>Apellidos:</strong> {{ jugador.apellido }}</p>
+      <p><strong>Fecha nacimiento:</strong> {{ jugador.fecha_nacimiento }}</p>
+      <p><strong>Nacionalidad:</strong> {{ jugador.nacionalidad }}</p>
+      <p><strong>Posicion:</strong> {{ jugador.posicion }}</p>
+      <p><strong>Dorsal:</strong> {{ jugador.dorsal }}</p>
+
+      <p>
+        <strong>Club:</strong>
+        {% if jugador.club %}
+          {{ jugador.club.nombre }} ({{ jugador.club.pais }})
+        {% else %}
+          Sense club
+        {% endif %}
+      </p>
+
+      <h5>Estadisticas</h5>
+      <ul>
+        <li>Goles: {{ jugador.estadisticas.goles }}</li>
+        <li>Asistencias: {{ jugador.estadisticas.asistencias }}</li>
+        <li>Partidos jugados: {{ jugador.estadisticas.partidos_jugados }}</li>
+      </ul>
+    </div>
+  </div>
+
+  <a href="/jugadores" class="btn btn-secondary">Volver al listado</a>
+  <a href="/jugadores/editar/{{ jugador._id }}" class="btn btn-warning">Editar</a>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.njk" %}
+
+{% block titulo %}Error{% endblock %}
+
+{% block contenido %}
+  <h1 class="mb-3">Error</h1>
+  <div class="alert alert-danger">
+    {{ error or "Se ha producido un error en la aplicacion." }}
+  </div>
+  <a href="/jugadores" class="btn btn-secondary">Volver al listado de jugadores</a>
+{% endblock %}
