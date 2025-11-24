@@ -1,0 +1,726 @@
+{
+	"info": {
+		"_postman_id": "ddb0f88f-fcda-4cb2-a268-62089d3e2bb3",
+		"name": "API FUTBOL (Express + Mongoose)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44239831"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"item": [
+				{
+					"name": "Clubs",
+					"item": [
+						{
+							"name": "TODOS",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/clubs",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"clubs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "por ID (Barcelona)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/clubs/690e5f0620c21f988a936efd",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"clubs",
+										"690e5f0620c21f988a936efd"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "por Pais(España)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/clubs/pais/España",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"clubs",
+										"pais",
+										"España"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "por Ciudad(Valencia)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/clubs/ciudad/Valencia",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"clubs",
+										"ciudad",
+										"Valencia"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "busqueda por nombre(AC MILAN)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/clubs/buscar-nombre/AC",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"clubs",
+										"buscar-nombre",
+										"AC"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "bussqueda por rango Fundacion",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/clubs/fundacion/1890-01-01/1910-12-31",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"clubs",
+										"fundacion",
+										"1890-01-01",
+										"1910-12-31"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Jugadores",
+					"item": [
+						{
+							"name": "TODOS",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/jugadores",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"jugadores"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "por ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/jugadores/690e5f7b20c21f988a936f01",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"jugadores",
+										"690e5f7b20c21f988a936f01"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "por Posicion",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/jugadores/posicion/DEL",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"jugadores",
+										"posicion",
+										"DEL"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "por Equipo",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/jugadores/club/690e5c0b1a0ce09f03d9f736",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"jugadores",
+										"club",
+										"690e5c0b1a0ce09f03d9f736"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "por Nombre",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/jugadores/buscar-nombre/ro",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"jugadores",
+										"buscar-nombre",
+										"ro"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "por Apellido",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "por Goles",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/jugadores/top-goles/26",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"jugadores",
+										"top-goles",
+										"26"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Competiciones",
+					"item": [
+						{
+							"name": "TODOS",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/competiciones",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"competiciones"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "por ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/competiciones/690f6a6dc3fb181e9507b4bd",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"competiciones",
+										"690f6a6dc3fb181e9507b4bd"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "por Tipo",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/competiciones/tipo/LIGA",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"competiciones",
+										"tipo",
+										"LIGA"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "por Pais",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/competiciones/pais/España",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"competiciones",
+										"pais",
+										"España"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "por Nombre y temporada",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "por Nombre",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Inscripciones",
+					"item": [
+						{
+							"name": "Todas",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/inscripciones",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"inscripciones"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "por ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/inscripciones/690f6b6bc3fb181e9507b4cf",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"inscripciones",
+										"690f6b6bc3fb181e9507b4cf"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "por Competicion",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "por Club",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/inscripciones/club/690e5c0b1a0ce09f03d9f736",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"inscripciones",
+										"club",
+										"690e5c0b1a0ce09f03d9f736"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Clasificacion",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "por Puntos",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "POST",
+			"item": [
+				{
+					"name": "Clubs",
+					"item": [
+						{
+							"name": "LAFC",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"Los Angeles FC\",\r\n  \"fundacion\": \"2014-10-30\",\r\n  \"ciudad\": \"Los Ángeles\",\r\n  \"pais\": \"Estados Unidos\",\r\n  \"estadio\": \"BMO Stadium\",\r\n  \"web\": \"https://www.lafc.com\",\r\n  \"trofeos\": { \"MLS Cup\": 1, \"SupportersShield\": 2 }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/clubs",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"clubs"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Jugadores",
+					"item": [
+						{
+							"name": "Mbappe",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"Kylian\",\r\n  \"apellido\": \"Mbappé\",\r\n  \"fecha_nacimiento\": \"1998-12-20\",\r\n  \"nacionalidad\": \"Francia\",\r\n  \"posicion\": \"DEL\",\r\n  \"dorsal\": 10,\r\n  \"club\": \"690e5c0b1a0ce09f03d9f736\",\r\n  \"goles\": 30,\r\n  \"asistencias\": 9,\r\n  \"partidos_jugados\": 42\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/jugadores",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"jugadores"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Competiciones",
+					"item": [
+						{
+							"name": "PremierLeague",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"LaLiga EA Sports\",\r\n  \"tipo\": \"LIGA\",\r\n  \"pais\": \"España\",\r\n  \"organizador\": \"RFEF\",\r\n  \"temporada\": \"2024/2025\",\r\n  \"fecha_inicio\": \"2025-08-16\",\r\n  \"fecha_fin\": \"2026-05-25\",\r\n  \"estado\": \"EN_CURSO\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/competiciones",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"competiciones"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Inscripciones",
+					"item": [
+						{
+							"name": "inscripcion Real Madrid Champions",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"club\": \"690e5c0b1a0ce09f03d9f736\",\r\n  \"competicion\": \"690f6ad1c3fb181e9507b4cd\",\r\n  \"puntos\": 13,\r\n  \"victorias\": 4,\r\n  \"empates\": 1,\r\n  \"derrotas\": 1,\r\n  \"goles_favor\": 14,\r\n  \"goles_contra\": 6\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/inscripciones",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"inscripciones"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "PUT",
+			"item": [
+				{
+					"name": "Clubs",
+					"item": [
+						{
+							"name": "actualizacion Manchester City",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"Manchester City FC\",\r\n  \"fundacion\": \"1880-11-23\",\r\n  \"ciudad\": \"Manchester\",\r\n  \"pais\": \"Inglaterra\",\r\n  \"estadio\": \"Etihad Stadium\",\r\n  \"web\": \"https://www.mancity.com\",\r\n  \"trofeos\": { \"PremierLeague\": 15, \"FA Cup\": 9, \"ChampionsLeague\": 1 }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/clubs/690f679dc3fb181e9507b4a5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"clubs",
+										"690f679dc3fb181e9507b4a5"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Jugadores",
+					"item": []
+				},
+				{
+					"name": "Competiciones",
+					"item": []
+				},
+				{
+					"name": "Inscripciones",
+					"item": []
+				}
+			]
+		},
+		{
+			"name": "DELETE",
+			"item": [
+				{
+					"name": "Clubs",
+					"item": [
+						{
+							"name": "Boca Eliminado",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/clubs/690f680fc3fb181e9507b4b1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"clubs",
+										"690f680fc3fb181e9507b4b1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Jugadores",
+					"item": []
+				},
+				{
+					"name": "Competiciones",
+					"item": []
+				},
+				{
+					"name": "Inscripciones",
+					"item": []
+				}
+			]
+		}
+	]
+}
